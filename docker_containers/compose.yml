@@ -1,0 +1,21 @@
+services:
+    imcpy:
+        image: imcpy:latest
+        build:
+          context: ./jupyter_env
+          dockerfile: Dockerfile
+        container_name: imcpy
+        volumes:
+          - ../../:/workspace
+          - /mnt/disks/data:/mnt/disks/data
+        user: 'root'
+        ports:
+          - "8888:8888"
+        environment:
+          - ENABLE_JUPYTER_LAB=yes
+          - JUPYTER_TOKEN=XXXXX
+          - NB_USER=XXXXX
+          - NB_UID=XXXXX
+          - NB_GID=XXXXX
+          - CHOWN_HOME=yes
+        working_dir: /workspace
